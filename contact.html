@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/48591d3785.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fas fa-paper-plane"></i>navalprakash489@gmail.com</p>
+                    <p><i class="fas fa-phone-square"></i>8188809901</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/173qoeBBYq/"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://x.com/developer_1891"><i class="fa-brands fa-square-twitter"></i></a>
+                        <a href="https://www.instagram.com/naval___jatav?igsh=bjZ6cnl0bWY2Z3o2"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a
+                            href="https://www.linkedin.com/in/naval-prakash-bharti-a0b2aa339?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="my-cv.pdf" download class="btn btn2">Download CV</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+            <a href="index.html" class="btn btn3"><i class="fa-solid fa-arrow-left"></i>Go Home</a>
+            <a href="portfolio.html" class="btn btn3"><i class="fa-solid fa-arrow-left"></i>Previous</a>
+        </div>
+        <div class="copyright">
+            <p>Copyright &copy; Naval. Made with<i class="fa-solid fa-heart"></i>by Easy Tutorials</p>
+        </div>
+
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzrg_IRPdJ04R2Cc5OtyNA_Ibw7mq8cbfyBzHA-R42brVMSxAcudPAeQcXaeRfZiBXl/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const msg = document.getElementById("msg")
+
+            form.addEventListener('submit', e => {
+                e.preventDefault()
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => {
+                        msg.innerHTML = "Message sent successfully"
+                        setTimeout(function(){
+                            msg.innerHTML = ""
+                        },5000)
+                        form.reset()
+                    })
+                    .catch(error => console.error('Error!', error.message))
+            })
+        </script>
+</body>
+
+</html>
